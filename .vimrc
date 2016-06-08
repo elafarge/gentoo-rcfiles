@@ -21,6 +21,7 @@ Plugin 'lervag/vimtex'
 Plugin 'chrisbra/csv.vim'
 Plugin 'SirVer/ultisnips'
 Plugin 'severin-lemaignan/vim-minimap'
+Plugin 'altercation/vim-colors-solarized'
 
 call vundle#end()
 
@@ -36,7 +37,8 @@ set mouse=a
 set incsearch " Research begins and updates as you type
 " set guifont=Ubuntu\ Mono:h11
 set t_Co=256
-colorscheme molokai
+let g:solarized_termcolors=256
+colorscheme solarized
 hi Normal ctermbg=none
 
 " Tagbar toggle on F8 --and opening at startup--
