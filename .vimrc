@@ -22,6 +22,7 @@ Plugin 'chrisbra/csv.vim'
 Plugin 'SirVer/ultisnips'
 Plugin 'severin-lemaignan/vim-minimap'
 Plugin 'altercation/vim-colors-solarized'
+Plugin 'editorconfig/editorconfig-vim'
 
 call vundle#end()
 
@@ -116,3 +117,6 @@ let g:EclimCompletionMethod="omnifunc"
 
 " Shell escape for LatexMK
 let g:vimtex_latexmk_options="--shell-escape"
+
+" Editorconfig
+let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
