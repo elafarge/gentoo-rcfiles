@@ -5,10 +5,21 @@ end_of_line = lf
 insert_final_newline = false
 indent_style = space
 indent_size = 2
-tab_width = 4
+tab_width = 2
 trim_trailing_whitespace = true
 max_line_length = 80
 
+[*.go]
+max_line_length = 100
+
+[*.sh]
+max_line_length = 300
+
+[*.{yml,yaml,json}]
+
+[*.{tf,tfvars}]
+max_line_length = 120
+
 [*.py]
-indent_style = space
 indent_size = 4
+tab_width = 4

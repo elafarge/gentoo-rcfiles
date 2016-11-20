@@ -1,30 +1,41 @@
 
 
 set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+call plug#begin('~/.vim/plugged')
 
-Plugin 'gmarik/Vundle.vim'
+" Essentials
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'scrooloose/nerdtree'
+Plug 'tpope/vim-fugitive'
+Plug 'Valloric/YouCompleteMe'
+Plug 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
+Plug 'majutsushi/tagbar'
 
-Plugin 'tpope/vim-fugitive'
-Plugin 'scrooloose/nerdtree'
-Plugin 'jistr/vim-nerdtree-tabs'
-Plugin 'Xuyuanp/nerdtree-git-plugin'
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'majutsushi/tagbar'
-Plugin 'terryma/vim-multiple-cursors'
-Plugin 'Valloric/YouCompleteMe'
-Plugin 'scrooloose/syntastic'
-Bundle 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
-Plugin 'jelera/vim-javascript-syntax'
-Plugin 'marijnh/tern_for_vim'
-Plugin 'lervag/vimtex'
-Plugin 'chrisbra/csv.vim'
-Plugin 'SirVer/ultisnips'
-Plugin 'severin-lemaignan/vim-minimap'
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'editorconfig/editorconfig-vim'
+" Apparently cool but I should dive deeper into them at some point
+Plug 'SirVer/ultisnips'
 
-call vundle#end()
+" Show off plug ins (that also help coding actually)
+Plug 'airblade/vim-gitgutter'
+
+" Language plugins
+Plug 'chrisbra/csv.vim'
+Plug 'scrooloose/syntastic'
+Plug 'marijnh/tern_for_vim'
+Plug 'lervag/vimtex'
+Plug 'hashivim/vim-terraform'
+Plug 'fatih/vim-go'
+
+" Cool tools for noobs I should get rid of at some point
+Plug 'terryma/vim-multiple-cursors'
+Plug 'editorconfig/editorconfig-vim'
+
+" No idea what the fuck it is
+" Plug 'altercation/vim-colors-solarized'
+Plug 'mileszs/ack.vim'
+Plug 'severin-lemaignan/vim-minimap'
+Plug 'scrooloose/nerdcommenter'
+
+call plug#end()
 
 filetype plugin indent on
 
@@ -33,13 +44,14 @@ filetype plugin indent on
 syntax on
 set number
 
-set background=dark
 set mouse=a
 set incsearch " Research begins and updates as you type
 " set guifont=Ubuntu\ Mono:h11
 set t_Co=256
 let g:solarized_termcolors=256
-colorscheme solarized
+colorscheme monokai
+set background=dark
+" colorscheme solarized
 hi Normal ctermbg=none
 
 " Tagbar toggle on F8 --and opening at startup--
@@ -50,7 +62,7 @@ nmap <F6> :TagbarToggle<CR>
 
 " Same for NERDTree
 " let g:nerdtree_tabs_open_on_console_startup = 1
-nmap <F5> :NERDTreeTabsToggle<CR>
+nmap <F5> :NERDTreeToggle<CR>
 
 " Automatic cd to Datadog's Project directory
 " cd /Users/etiennelafarge/Documents/Projects
@@ -115,8 +127,18 @@ let g:UltiSnipsListSnippets="<Leader>L"
 " YCM configuration
 let g:EclimCompletionMethod="omnifunc"
 
-" Shell escape for LatexMK
-let g:vimtex_latexmk_options="--shell-escape"
+let g:vimtex_view_general_viewer = "zathura"
+let g:vimtex_view_method = "zathura"
 
 " Editorconfig
 let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
+
+" Silver searcher
+let g:ackprg = 'ag --nogroup --nocolor --column'
+
+" Fatih fatih fatih
+let g:go_autodetect_gopath = 0
+
+" Ctrl-P
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'

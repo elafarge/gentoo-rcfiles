@@ -11,7 +11,7 @@ ZSH_THEME="xiong-chiamiov-plus"
 # CASE_SENSITIVE="true"
 
 # Uncomment the following line to disable bi-weekly auto-update checks.
-DISABLE_AUTO_UPDATE="true"
+# DISABLE_AUTO_UPDATE="true"
 
 # Uncomment the following line to change how often to auto-update (in days).
 # export UPDATE_ZSH_DAYS=13
@@ -78,20 +78,18 @@ if [ -z "$SSH_AUTH_SOCK" ] ; then
   ssh-add
 fi
 
-##### Kubernetes #####
+# Go for it
+export GOPATH="/home/etienne/Go"
+export GOBIN=$GOPATH/bin
+export PATH=$PATH:$GOBIN
 
-# Aliases
-alias kubestart="sudo /opt/k8s/hack/local-up-cluster.sh"
-alias podjump="kubectl run -i --tty busybox --image=busybox --generator=\"run-pod/v1\""
+# Few those commands were so long
+alias dc="docker-compose"
+alias kcf="kubectl create -f"
+alias kdf="kubectl delete -f"
+source ~/.k8s_completion
 
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
+# Work related, shouldn't be added to SCM
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
-# LET'S RUN TMUX BY DEFAULT
-# tmux
+source "$DIR/.private_zshrc"
