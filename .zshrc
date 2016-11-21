@@ -1,11 +1,23 @@
 # Path to your oh-my-zsh installation.
 ZSH=/usr/share/oh-my-zsh/
 
-# Set name of the theme to load.
-# Look in ~/.oh-my-zsh/themes/
-# Optionally, if you set this to "random", it'll load a random theme each
-# time that oh-my-zsh is loaded.
-ZSH_THEME="xiong-chiamiov-plus"
+DIR="$(dirname "$(readlink -f ~/.zshrc)")"
+
+source "$DIR/antigen/antigen.zsh"
+
+## Antigen ##
+antigen use oh-my-zsh
+
+antigen bundle git
+antigen bundle pip
+antigen bundle command-not-found
+antigen bundle docker
+antigen bundle docker-compose
+
+antigen bundle zsh-users/zsh-syntax-highlighting
+antigen theme candy
+
+antigen apply
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -55,8 +67,6 @@ export PATH=$HOME/bin:/usr/local/bin:$PATH
 # export PATH=$HOME/.chefdk/gem/ruby/2.1.0/bin:$PATH
 # export MANPATH="/usr/local/man:$MANPATH"
 
-source ~/.oh-my-zsh/oh-my-zsh.sh
-
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
 
@@ -87,9 +97,11 @@ export PATH=$PATH:$GOBIN
 alias dc="docker-compose"
 alias kcf="kubectl create -f"
 alias kdf="kubectl delete -f"
-source ~/.k8s_completion
+source "$DIR/k8s_completion"
 
 # Work related, shouldn't be added to SCM
-DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-
 source "$DIR/.private_zshrc"
+
+# Multiple monitor shortcuts (home, office, shared prez for VGA and HDMI)
+alias scr-home="xrandr --output DP1 --auto --left-of eDP1"
+alias scr-rythm="xrandr --output DP1 --auto --left-of eDP1 && xrandr --output HDMI1 --auto --left-of DP1"

@@ -1,4 +1,9 @@
-
+"
+" My portable vimrc, with my favorite plugins for Python, Go and DevOps work
+" (Terraform, Yaml editing...)
+"
+" Etienne Lafarge <etienne.lafarge@gmail.com
+"
 
 set rtp+=~/.vim/bundle/Vundle.vim
 call plug#begin('~/.vim/plugged')
@@ -10,6 +15,9 @@ Plug 'tpope/vim-fugitive'
 Plug 'Valloric/YouCompleteMe'
 Plug 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
 Plug 'majutsushi/tagbar'
+
+" Colorschemes and themes
+Plug 'crusoexia/vim-monokai'
 
 " Apparently cool but I should dive deeper into them at some point
 Plug 'SirVer/ultisnips'
@@ -47,9 +55,9 @@ set number
 set mouse=a
 set incsearch " Research begins and updates as you type
 " set guifont=Ubuntu\ Mono:h11
+colorscheme monokai
 set t_Co=256
 let g:solarized_termcolors=256
-colorscheme monokai
 set background=dark
 " colorscheme solarized
 hi Normal ctermbg=none
