@@ -18,6 +18,7 @@ Plug 'majutsushi/tagbar'
 
 " Colorschemes and themes
 Plug 'crusoexia/vim-monokai'
+Plug 'altercation/vim-colors-solarized'
 
 " Apparently cool but I should dive deeper into them at some point
 Plug 'SirVer/ultisnips'
@@ -55,11 +56,11 @@ set number
 set mouse=a
 set incsearch " Research begins and updates as you type
 " set guifont=Ubuntu\ Mono:h11
-colorscheme monokai
-set t_Co=256
-let g:solarized_termcolors=256
 set background=dark
-" colorscheme solarized
+colorscheme solarized
+" set t_Co=256
+" let g:solarized_termcolors=256
+" colorscheme monokai
 hi Normal ctermbg=none
 
 " Tagbar toggle on F8 --and opening at startup--

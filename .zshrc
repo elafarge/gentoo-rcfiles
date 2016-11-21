@@ -83,10 +83,11 @@ export EDITOR=vim
 
 # ssh
 # export SSH_KEY_PATH="~/.ssh/dsa_id"
-if [ -z "$SSH_AUTH_SOCK" ] ; then
-  eval `ssh-agent -s`
-  ssh-add
-fi
+# if [ -z "$SSH_AUTH_SOCK" ] ; then
+#   eval `ssh-agent -s`
+#   ssh-add
+# fi
+eval `keychain --eval aws_rythm terraform github_rythm etienne_ks5`
 
 # Go for it
 export GOPATH="/home/etienne/Go"
@@ -104,4 +105,4 @@ source "$DIR/.private_zshrc"
 
 # Multiple monitor shortcuts (home, office, shared prez for VGA and HDMI)
 alias scr-home="xrandr --output DP1 --auto --left-of eDP1"
-alias scr-rythm="xrandr --output DP1 --auto --left-of eDP1 && xrandr --output HDMI1 --auto --left-of DP1"
+alias scr-rythm="xrandr --output DP1 --auto --right-of eDP1 && xrandr --output HDMI2 --auto --right-of DP1"
