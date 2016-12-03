@@ -13,6 +13,7 @@ antigen bundle pip
 antigen bundle command-not-found
 antigen bundle docker
 antigen bundle docker-compose
+antigen bundle pass
 
 antigen bundle zsh-users/zsh-syntax-highlighting
 antigen theme candy
@@ -87,10 +88,10 @@ export EDITOR=vim
 #   eval `ssh-agent -s`
 #   ssh-add
 # fi
-eval `keychain --eval aws_rythm terraform github_rythm etienne_ks5`
+eval `keychain --noask --eval aws_rythm terraform github_rythm etienne_ks5 DEADBEEF`
 
 # Go for it
-export GOPATH="/home/etienne/Go"
+export GOPATH="/home/etienne/Code/Go"
 export GOBIN=$GOPATH/bin
 export PATH=$PATH:$GOBIN
 
@@ -98,11 +99,13 @@ export PATH=$PATH:$GOBIN
 alias dc="docker-compose"
 alias kcf="kubectl create -f"
 alias kdf="kubectl delete -f"
-source "$DIR/k8s_completion"
+source "$DIR/k8s_completion.zsh"
 
 # Work related, shouldn't be added to SCM
 source "$DIR/.private_zshrc"
 
 # Multiple monitor shortcuts (home, office, shared prez for VGA and HDMI)
 alias scr-home="xrandr --output DP1 --auto --left-of eDP1"
-alias scr-rythm="xrandr --output DP1 --auto --right-of eDP1 && xrandr --output HDMI2 --auto --right-of DP1"
+alias scr-rythm="xrandr --output DP1 --auto --above eDP1 --output HDMI2 --auto --right-of DP1"
+alias scr-laptop="xrandr --output DP1 --off --output HDMI2 --off"
+alias scr-update="~/.rcfiles/reconfigure_screens.sh"

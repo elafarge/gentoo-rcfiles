@@ -305,11 +305,13 @@ __handle_flag()
     if __contains_word "${flagname}" "${must_have_one_flag[@]}"; then
         must_have_one_flag=()
     fi
-
     # if you set a flag which only applies to this command, don't show subcommands
     if __contains_word "${flagname}" "${local_nonpersistent_flags[@]}"; then
       commands=()
     fi
+
+    # strip the -- sign before using flagname as a key
+    flagname="$(sed 's/^--$//g' <<< "$(sed 's/=$//g' <<< "$flagname")")"
 
     # keep flag value with flagname as flaghash
     if [ -n "${flagvalue}" ] ; then
