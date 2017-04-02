@@ -215,6 +215,7 @@ for_window [class="Scratchpad"] move to scratchpad
 new_window 1pixel
 
 # Colors
+set $transparent         #1d1f21cc
 set $bg-color 	         #1d1f21
 set $inactive-bg-color   #2f343f
 set $text-color          #f3f4f5
@@ -236,10 +237,12 @@ gaps outer 0
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-  status_command i3blocks -c ~/.rcfiles/i3blocks
+  i3bar_command i3bar -t
+  status_command /home/etienne/Code/Go/bin/goblocks
   position top
+  height 28
 	colors {
-		background $bg-color
+		background $transparent
 
    	separator #757575
 
@@ -251,7 +254,7 @@ bar {
 }
 
 # Rofi as a great launcher
-bindsym $mod+d exec rofi -show run -lines 3 -eh 2 -width 100 -padding 400 -opacity "85" -bw 0 -bc "$bg-color" -bg "$bg-color" -fg "$text-color" -hlbg "$bg-color" -hlfg "#9575cd" -font "Monaco 18"
+bindsym $mod+d exec "rofi -show run -lines 5 -eh 2 -width 100 -padding 600 -opacity 85 -color-window \\"#002b37, #002b37, #003642\\" -color-normal \\"#002b37, #819396, #002b37, #003642, #819396\\" -color-active \\"#002b37, #008ed4, #002b37, #003642, #008ed4\\" -color-urgent \\"#002b37, #da4281, #002b37, #003642, #da4281\\" -font \\"Monaco 18\\""
 
 # Print Screen triggers scrot
 bindsym --release Print exec --no-startup-id scrot -c
