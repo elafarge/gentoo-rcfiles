@@ -43,9 +43,6 @@ setxkbmap -option compose:ralt &
 
 xset r rate 200 25
 
-# Redshift, our eyes friend
-redshift -l 48.856614:2.352222 &
-
 termite -e "vim -c \"autocmd CursorHold .notes.md :write\" .notes.md" --class=Scratchpad --title=Scratchpad &
 
 # Let's get started with i3 !!!
