@@ -33,6 +33,10 @@ Plug 'marijnh/tern_for_vim'
 Plug 'lervag/vimtex'
 Plug 'hashivim/vim-terraform'
 Plug 'fatih/vim-go'
+Plug 'cespare/vim-toml'
+Plug 'rust-lang/rust.vim'
+Plug 'racer-rust/vim-racer'
+Plug 'suan/vim-instant-markdown'
 
 " Cool tools for noobs I should get rid of at some point
 Plug 'terryma/vim-multiple-cursors'
@@ -147,7 +151,21 @@ let g:ackprg = 'ag --nogroup --nocolor --column'
 
 " Fatih fatih fatih
 let g:go_autodetect_gopath = 0
+let g:go_fmt_command = "goimports"
+
+" Racer
+set hidden
+let g:racer_cmd = "~/.cargo/bin/racer"
+let g:racer_experimental_completer = 1
+
+au FileType rust nmap gd <Plug>(rust-def)
+au FileType rust nmap gs <Plug>(rust-def-split)
+au FileType rust nmap gx <Plug>(rust-def-vertical)
+au FileType rust nmap <leader>gd <Plug>(rust-doc)
 
 " Ctrl-P
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
+
+" Home printer configuration
+set pdev=RythmPrinter

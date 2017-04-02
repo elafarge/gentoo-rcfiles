@@ -13,7 +13,7 @@ set $mod Mod1
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango:Monaco 12
+font pango:Ubuntu Mono Derivative Powerline 14
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
@@ -88,7 +88,10 @@ bindsym $mod+space focus mode_toggle
 bindsym $mod+a focus parent
 
 # focus the child container
-#bindsym $mod+d focus child
+# bindsym $mod+z focus child
+
+# scratchpad toggle
+bindsym $mod+g scratchpad show
 
 # workspace declaration
 set $terminal "1 "
@@ -131,6 +134,7 @@ bindsym $mod+Shift+r restart
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 # Move workspace top laptop screen
 bindsym $mod+z move workspace to output eDP1;
+bindsym $mod+Shift+z move workspace to output HDMI2;
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -159,7 +163,7 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 # Locking i3
-bindsym $mod+Shift+x exec i3lock -i ~/Pictures/system76_wallpaper.png
+bindsym $mod+Shift+x exec ~/.rcfiles/lock.sh
 
 # No window borders when only one window on workspace (or how to save two more
 # pixels... greedy greedy greedy)
@@ -196,19 +200,22 @@ bindsym XF86AudioPause exec playerctl pause
 bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
-# Let's launch our applications in the right place on startup
-exec i3-msg 'workspace $terminal; exec termite; workspace $editor; exec termite; workspace $background; exec termite; exec termite; workspace $chat; exec termite; workspace $browser;'
-exec chromium
-
 # workspace assignation (for things we don't start on system startup)
 assign [class="Spotify"] $spotify
+assign [class="Chromium"] $browser
 assign [class="Rythmbox"] $spotify
 assign [class="Slack"] $chat
 
-exec slack
+# Let's launch our applications in the right place on startup
+exec i3-msg 'workspace $terminal; exec termite; workspace $editor; exec termite -e vim -d ~/Code/; workspace $background; exec termite; exec termite; workspace $chat; exec termite; exec slack; workspace $browser; exec chromium;'
+
+for_window [class="Scratchpad"] move to scratchpad
+
+# No title bars
+new_window 1pixel
 
 # Colors
-set $bg-color 	         #3d4352
+set $bg-color 	         #1d1f21
 set $inactive-bg-color   #2f343f
 set $text-color          #f3f4f5
 set $inactive-text-color #676E7D
@@ -221,10 +228,16 @@ client.unfocused        $inactive-bg-color $inactive-bg-color $inactive-text-col
 client.focused_inactive $inactive-bg-color $inactive-bg-color $inactive-text-color #00ff00
 client.urgent           $urgent-bg-color    $urgent-bg-color   $text-color          #00ff00
 
+# Gaps :)
+smart_gaps on
+gaps inner 7
+gaps outer 0
+
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
   status_command i3blocks -c ~/.rcfiles/i3blocks
+  position top
 	colors {
 		background $bg-color
 
@@ -240,8 +253,11 @@ bar {
 # Rofi as a great launcher
 bindsym $mod+d exec rofi -show run -lines 3 -eh 2 -width 100 -padding 400 -opacity "85" -bw 0 -bc "$bg-color" -bg "$bg-color" -fg "$text-color" -hlbg "$bg-color" -hlfg "#9575cd" -font "Monaco 18"
 
+# Print Screen triggers scrot
+bindsym --release Print exec --no-startup-id scrot -c
+
 # Compton lightweight compositor for transparency and stuff
-exec --no-startup-id compton -f
+exec --no-startup-id compton -f -c
 
 # But will be moved to other screens if they are present
 exec --no-startup-id ~/.rcfiles/reconfigure_screens.sh

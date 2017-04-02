@@ -1,5 +1,8 @@
 .private_*
 
+# antigen folder
+antigen
+
 ## Vim files ##
 # swap
 [._]*.s[a-w][a-z]
@@ -11,3 +14,4 @@ Session.vim
 *~
 # auto-generated tag files
 tags
+

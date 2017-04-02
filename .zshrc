@@ -14,9 +14,11 @@ antigen bundle command-not-found
 antigen bundle docker
 antigen bundle docker-compose
 antigen bundle pass
+antigen bundle z
 
 antigen bundle zsh-users/zsh-syntax-highlighting
-antigen theme candy
+# antigen theme candy
+antigen theme sunrise
 
 antigen apply
 
@@ -88,7 +90,16 @@ export EDITOR=vim
 #   eval `ssh-agent -s`
 #   ssh-add
 # fi
-eval `keychain --noask --eval aws_rythm terraform github_rythm etienne_ks5 DEADBEEF`
+
+# OpenPGP applet support for YubiKey NEO
+if [ ! -f /tmp/gpg-agent.env ]; then
+    killall gpg-agent;
+        eval $(gpg-agent --daemon --enable-ssh-support > /tmp/gpg-agent.env);
+fi
+. /tmp/gpg-agent.env
+
+# SSH Keychain (supposedly...)
+eval `keychain --noask --eval aws_rythm terraform github_rythm etienne_ks5`
 
 # Go for it
 export GOPATH="/home/etienne/Code/Go"
@@ -99,6 +110,7 @@ export PATH=$PATH:$GOBIN
 alias dc="docker-compose"
 alias kcf="kubectl create -f"
 alias kdf="kubectl delete -f"
+alias kaf="kubectl apply -f"
 source "$DIR/k8s_completion.zsh"
 
 # Work related, shouldn't be added to SCM
@@ -109,3 +121,8 @@ alias scr-home="xrandr --output DP1 --auto --left-of eDP1"
 alias scr-rythm="xrandr --output DP1 --auto --above eDP1 --output HDMI2 --auto --right-of DP1"
 alias scr-laptop="xrandr --output DP1 --off --output HDMI2 --off"
 alias scr-update="~/.rcfiles/reconfigure_screens.sh"
+
+alias tcurl="watch -n1 curl -w "@curl-format.txt" -o /dev/null -s"
+
+alias scratchme="i3-msg move scratchpad"
+alias xr="xset r rate 200"

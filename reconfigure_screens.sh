@@ -8,29 +8,39 @@
 # Maintainer Etienne Lafarge
 #
 
-# Let's move all workspaces to the laptop screen
+# Basic X configuration
+X_USER=etienne
+export DISPLAY=:0
+export XAUTHORITY=/home/$X_USER/.Xauthority
+export DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus
 
+# Let's move all workspaces to the laptop screen
 i3-msg 'workspace 1 ; move workspace to output eDP1; workspace 2 ; move workspace to output eDP1; workspace 3 ; move workspace to output eDP1; workspace 3 ; workspace 4 ; move workspace to output eDP1; workspace ; move workspace to output eDP1; workspace ; move workspace to output eDP1;'
+
+xrandr --output eDP1 --auto --pos 0x0 --mode 1920x1080
 
 # Default (laptop screen only) configuration
 # Check if the VGA (Left) screen is available...
-if [[ -n "$(xrandr | grep "DP1 connected")" ]]; then
+if [ $(cat /sys/class/drm/card0-DP-1/status) == "connected" ] ; then
   # If so activate it and move our browser there
-  echo "Enabling VGA Screen on the left..."
-  xrandr --output DP1 --auto --left-of eDP1
-  i3-msg 'workspace 2 ; move workspace to output DP1'
-else
-  i3-msg 'workspace 2 ; move workspace to output eDP1; workspace 2 '
+  echo "Enabling VGA Screen on the left of the laptop..."
+  xrandr --output DP1 --auto --pos 1920x0 # --mode 1400x900
+  i3-msg 'workspace 3 ; move workspace to output DP1'
+elif [ $(cat /sys/class/drm/card0-DP-1/status) == "disconnected" ] ; then
+  i3-msg 'workspace 3 ; move workspace to output eDP1; workspace 3 '
   xrandr --output DP1 --off
 fi
 
 # Check if the right screen (HDMi) is plugged in too...
-if [[ -n "$(xrandr | grep "HDMI2 connected")" ]]; then
+if [ $(cat /sys/class/drm/card0-HDMI-A-2/status) == "connected" ] ; then
   # If so let's move our dear VIM over there
   echo "Enabling HDMI Screen on the right..."
-  xrandr --output HDMI2 --auto --right-of eDP1
-  i3-msg 'workspace 3 ; move workspace to output HDMI2'
-else
-  i3-msg 'workspace 3 ; move workspace to output eDP1; workspace 3 '
+  xrandr --output HDMI2 --auto --pos 3840x0 --mode 1920x1080
+  i3-msg 'workspace 2 ; move workspace to output HDMI2'
+elif [ $(cat /sys/class/drm/card0-HDMI-A-2/status) == "disconnected" ] ; then
+  i3-msg 'workspace 2 ; move workspace to output eDP1; workspace 2 '
   xrandr --output HDMI2 --off
 fi
+
+# I want a damn wallpaper
+feh --bg-fill ~/Pictures/deviantart/cotton_clouds_by_luisbc-d9o13sn.png

@@ -33,13 +33,20 @@ fi
 # Always good to get audio working...
 start-pulseaudio-x11
 
-# I want a damn wallpaper
-feh --bg-fill ~/Pictures/wallpaper_newyork.jpg
-
 # Have CAPS LOCK mapped to ESC (so useful in VIM... and even i3)
-xmodmap -e 'clear Lock' #ensures you're not stuck in CAPS on mode
-xmodmap -e 'keycode 0x42=Escape' #remaps the keyboard so CAPS LOCK=ESC
-setxkbmap -option caps:escape &
+# xmodmap -e 'clear Lock' #ensures you're not stuck in CAPS on mode
+# xmodmap -e 'keycode 0x42=Escape' #remaps the keyboard so CAPS LOCK=ESC
+# setxkbmap -option caps:escape &
+
+# Use right Alt as a compose key to be able to type French
+setxkbmap -option compose:ralt &
+
+xset r rate 200 25
+
+# Redshift, our eyes friend
+redshift -l 48.856614:2.352222 &
+
+termite -e "vim -c \"autocmd CursorHold .notes.md :write\" .notes.md" --class=Scratchpad --title=Scratchpad &
 
 # Let's get started with i3 !!!
 exec i3
