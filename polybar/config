@@ -1,0 +1,389 @@
+# Visual settings
+[colors]
+# Solarized (ehehehehe...)
+# http://simianuprising.com/wp-content/uploads/2012/08/solarized-reference-horizontal.png
+base03 = #002b36
+base02 = #073642
+base01 = #586e75
+base00 = #657b83
+base0 = #839496
+base1 = #93a1a1
+base2 = #eee8d5
+base3 = #fdf6e3
+yellow = #b58900
+orange = #cb4b16
+red = #dc322f
+magenta = #d33682
+violet = #6c71c4
+blue = #268bd2
+cyan = #2aa198
+green = #859900
+
+# Derived semantic color names
+background = ${colors.base03}
+background-alt = ${colors.base03}
+foreground = ${colors.base3}
+border = ${colors.magenta}
+inactive = ${colors.base0}
+selected = ${colors.base00}
+visible = ${colors.base02}
+notification = ${colors.violet}
+
+# Statuses
+ok = ${colors.green}
+warning = ${colors.orange}
+alert = ${colors.red}
+
+# Global settings
+[settings]
+screenchange-reload = true
+
+[global/wm]
+margin-top = 0
+margin-bottom = 0
+
+# Bars definition
+[bar/top]
+
+# Geometry
+monitor = ${env:MONITOR:eDP1}
+bottom = false
+fixed-center = false
+
+width = 100%
+height = 30
+radius = 0.0
+
+line-size = 2
+border-size = 0
+
+padding-left = 0
+padding-right = 3
+
+module-margin-left = 2
+module-margin-right = 2
+
+# tray-position = right
+# tray-padding = 2
+# tray-maxsize = 20
+# tray-offset-y = 3
+
+# Colors
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+line-color = ${colors.background-alt}
+border-color = ${colors.border}
+
+tray-background = ${colors.background}
+
+# Fonts
+font-0 = FontAwesome:style=Regular:antialias=true:size=13;3
+font-1 = Monaco for Powerline:fontformat=truetype:antialias=true:size=10;2
+font-2 = DejaVu Sans:style=Regular:antialias=true:size=13;2
+font-3 = Material Icons:style=Regular:antialias=true:size=15;5
+
+# Module disposition
+modules-left = i3 mpd
+modules-center =
+modules-right = cpu temperature memory filesystem network battery volume xbacklight date
+
+# Module settings
+[module/battery]
+type = internal/battery
+battery = BAT0
+adapter = AC
+
+time-format = %H:%M
+
+format-charging = <animation-charging> <label-charging>
+format-discharging = <ramp-capacity> <label-discharging>
+
+label-charging = %percentage%% (%time%)
+label-discharging = %percentage%% (%time%)
+label-full =  %percentage%% (00:00)
+
+ramp-capacity-0-foreground = ${colors.alert}
+ramp-capacity-0 = 
+ramp-capacity-1-foreground = ${colors.warning}
+ramp-capacity-1 = 
+ramp-capacity-2-foreground = ${colors.ok}
+ramp-capacity-2 = 
+ramp-capacity-3-foreground = ${colors.ok}
+ramp-capacity-3 = 
+ramp-capacity-4-foreground = ${colors.ok}
+ramp-capacity-4 = 
+
+animation-charging-0 = 
+animation-charging-1 = 
+animation-charging-2 = 
+animation-charging-3 = 
+animation-charging-4 = 
+animation-charging-framerate = 750
+
+[module/cpu]
+type = internal/cpu
+interval = 1
+
+format = "  <ramp-coreload>  <label>"
+
+label = %percentage:2:3%%
+
+ramp-coreload-0-foreground = ${colors.ok}
+ramp-coreload-0 = ▁
+ramp-coreload-1-foreground = ${colors.ok}
+ramp-coreload-1 = ▂
+ramp-coreload-2-foreground = ${colors.ok}
+ramp-coreload-2 = ▃
+ramp-coreload-3-foreground = ${colors.warning}
+ramp-coreload-3 = ▄
+ramp-coreload-4-foreground = ${colors.warning}
+ramp-coreload-4 = ▅
+ramp-coreload-5-foreground = ${colors.warning}
+ramp-coreload-5 = ▆
+ramp-coreload-6-foreground = ${colors.alert}
+ramp-coreload-6 = ▇
+ramp-coreload-7-foreground = ${colors.alert}
+ramp-coreload-7 = █
+
+[module/date]
+type = internal/date
+interval = 1.0
+label = %date%%time%
+
+time =  %H:%M
+
+date-alt =  %m-%d
+
+[module/filesystem]
+type = internal/fs
+
+mount-0 = /
+interval = 10
+
+label-mounted = %free%
+
+format-mounted =  <ramp-capacity> <label-mounted>
+
+ramp-capacity-0-foreground = ${colors.alert}
+ramp-capacity-0 = ▁
+ramp-capacity-1-foreground = ${colors.warning}
+ramp-capacity-1 = ▂
+ramp-capacity-2-foreground = ${colors.warning}
+ramp-capacity-2 = ▃
+ramp-capacity-3-foreground = ${colors.warning}
+ramp-capacity-3 = ▄
+ramp-capacity-4-foreground = ${colors.ok}
+ramp-capacity-4 = ▅
+ramp-capacity-5-foreground = ${colors.ok}
+ramp-capacity-5 = ▆
+ramp-capacity-6-foreground = ${colors.ok}
+ramp-capacity-6 = ▇
+ramp-capacity-7-foreground = ${colors.ok}
+ramp-capacity-7 = █
+
+[module/github]
+type = internal/github
+
+token = ${file:/home/etienne/.github-polybar-token}
+label =  %notifications%
+
+[module/i3]
+type = internal/i3
+pin-workspaces = true
+strip-wsnumbers = false
+index-sort = true
+enable-click = true
+enable-scroll = true
+wrapping-scroll = false
+format = <label-state> <label-mode>
+
+label-mode-padding = 2
+label-mode-foreground = #000
+
+; focused = Active workspace on focused monitor
+label-focused = %name%
+label-focused-background = ${colors.base01}
+label-focused-foreground = ${colors.foreground}
+label-focused-underline = ${colors.border}
+label-focused-padding = 2
+
+; unfocused = Inactive workspace on any monitor
+label-unfocused = %name%
+label-unfocused-foreground = ${colors.inactive}
+label-unfocused-padding = ${self.label-focused-padding}
+
+; visible = Active workspace on unfocused monitor
+label-visible = %name%
+label-visible-background = ${colors.visible}
+label-visible-underline = ${colors.green}
+label-visible-padding = ${self.label-focused-padding}
+
+; urgent = Workspace with urgency hint set
+label-urgent = %name%
+label-urgent-background = ${colors.notification}
+label-urgent-padding = ${self.label-focused-padding}
+label-urgent-underline = ${colors.red}
+
+[module/memory]
+type = internal/memory
+
+interval = 1
+
+label = %gb_used%
+
+format =  <bar-used>  <label>
+
+bar-used-width = 6
+bar-used-foreground-0 = ${colors.ok}
+bar-used-foreground-1 = ${colors.ok}
+bar-used-foreground-2 = ${colors.warning}
+bar-used-foreground-3 = ${colors.alert}
+bar-used-indicator =
+
+bar-used-fill = 
+bar-used-empty = 
+bar-used-empty-foreground = #444444
+
+[module/mpd]
+type = internal/mpd
+interval = 1
+
+host = 127.0.0.1
+port = 6600
+password =
+
+format-online = <icon-prev> <icon-seekb> <icon-stop> <toggle> <icon-seekf> <icon-next>  <icon-repeat> <icon-random>  <label-time>  <label-song>
+label-song =  %artist:0:20%  ~ %title:5:25%
+
+label-offline =  mpd is offline :(
+
+icon-play = 
+icon-pause = 
+icon-stop = 
+icon-prev =
+icon-next = 
+icon-seekb = 
+icon-seekf = 
+icon-random = 
+icon-repeat = 
+icon-repeatone = 
+
+toggle-on-foreground = ${colors.foreground}
+toggle-off-foreground = ${colors.inactive}
+
+[module/network]
+type = internal/network
+interface = wlp2s0
+
+interval = 1.0
+
+format-connected =  <ramp-signal> <label-connected>
+format-packetloss = 
+format-packetloss-foreground = ${colors.warning}
+format-disconnected = 
+format-disconnected-foreground = ${colors.inactive}
+
+label-active-font = 3
+
+label-connected = %downspeed:7:7% %upspeed:7:7%
+
+ramp-signal-0-foreground = ${colors.alert}
+ramp-signal-0 = ▁
+ramp-signal-1-foreground = ${colors.alert}
+ramp-signal-1 = ▂
+ramp-signal-2-foreground = ${colors.alert}
+ramp-signal-2 = ▃
+ramp-signal-3-foreground = ${colors.warning}
+ramp-signal-3 = ▄
+ramp-signal-4-foreground = ${colors.warning}
+ramp-signal-4 = ▅
+ramp-signal-5-foreground = ${colors.warning}
+ramp-signal-5 = ▆
+ramp-signal-6-foreground = ${colors.ok}
+ramp-signal-6 = ▇
+ramp-signal-7-foreground = ${colors.ok}
+ramp-signal-7 = █
+
+[module/temperature]
+type = internal/temperature
+
+interval = 0.5%layout% -
+thermal-zone = 0
+
+warn-temprature = 80
+format = <ramp> <label>
+
+label = %temperature%
+label-warn = %temperature%
+
+ramp-0-foreground = ${colors.ok}
+ramp-0 = 
+ramp-1-foreground = ${colors.ok}
+ramp-1 = 
+ramp-2-foreground = ${colors.ok}
+ramp-2 = 
+ramp-3-foreground = ${colors.warning}
+ramp-3 = 
+ramp-4-foreground = ${colors.alert}
+ramp-4 = 
+
+[module/volume]
+type = internal/volume
+
+master-soundcard = default
+
+master-mixer = Master
+# This uses a log scale to increasing the felt sound power linearly
+mapping = true
+
+format-volume = "<ramp-volume> <label-volume> <bar-volume>"
+format-volume-muted = " <label-volume> <bar-volume>"
+
+label-muted = "  0% ────────"
+label-volume = "%percentage%% "
+
+ramp-volume-0 = 
+ramp-volume-1 = 
+ramp-volume-2 = 
+
+bar-volume-width = 8
+bar-volume-indicator = |
+bar-volume-indicator-font = 0
+bar-volume-fill = ─
+bar-volume-fill-font = 0
+bar-volume-empty = ─
+bar-volume-empty-font = 0
+
+[module/xbacklight]
+type = internal/xbacklight
+output = eDP1
+enable-scroll = true
+
+format = <ramp> <bar>
+
+label-active-font = 2
+ramp-0 = 🌕
+ramp-1 = 🌔
+ramp-2 = 🌓
+ramp-3 = 🌒
+ramp-4 = 🌑
+
+bar-width = 4
+bar-indicator = |
+bar-indicator-font = 0
+bar-fill = ─
+bar-fill-font = 0
+bar-empty = ─
+bar-empty-font = 0
+
+[module/xkeyboard]
+type = internal/xkeyboard
+
+format = <label-layout>
+label-layout = %layout% - %name%
+
+[module/xwindow]
+type = internal/xwindow
+label = %title:0:150:...%
+format-foreground = ${colors.foreground}%layout% -

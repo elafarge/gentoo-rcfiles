@@ -41,9 +41,13 @@ start-pulseaudio-x11
 # Use right Alt as a compose key to be able to type French
 setxkbmap -option compose:ralt &
 
+# Keyboard repeat rate
 xset r rate 200 25
 
-termite -e "vim -c \"autocmd CursorHold .notes.md :write\" .notes.md" --class=Scratchpad --title=Scratchpad &
+# Terminal to be used by i3-sensible-terminal
+export TERMINAL=termite
+
+i3-sensible-terminal -e "vim" "-c" "autocmd CursorHold .notes.md :write" ".notes.md"  --class=Scratchpad --title=Scratchpad &
 
 # Let's get started with i3 !!!
 exec i3
