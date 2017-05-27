@@ -5,7 +5,6 @@
 " Etienne Lafarge <etienne.lafarge@gmail.com
 "
 
-set rtp+=~/.vim/bundle/Vundle.vim
 call plug#begin('~/.vim/plugged')
 
 " Essentials
@@ -13,7 +12,9 @@ Plug 'ctrlpvim/ctrlp.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-fugitive'
 Plug 'Valloric/YouCompleteMe'
-Plug 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
+" Plug 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 Plug 'majutsushi/tagbar'
 
 " Colorschemes and themes
@@ -37,6 +38,8 @@ Plug 'cespare/vim-toml'
 Plug 'rust-lang/rust.vim'
 Plug 'racer-rust/vim-racer'
 Plug 'suan/vim-instant-markdown'
+Plug 'kylef/apiblueprint.vim'
+Plug 'atweiden/vim-uzbl'
 
 " Cool tools for noobs I should get rid of at some point
 Plug 'terryma/vim-multiple-cursors'
@@ -59,13 +62,14 @@ set number
 
 set mouse=a
 set incsearch " Research begins and updates as you type
+set hlsearch
 " set guifont=Ubuntu\ Mono:h11
 set background=dark
 colorscheme solarized
 " set t_Co=256
 " let g:solarized_termcolors=256
 " colorscheme monokai
-hi Normal ctermbg=none
+" hi Normal ctermbg=none
 
 " Tagbar toggle on F8 --and opening at startup--
 nmap <F6> :TagbarToggle<CR>
@@ -88,8 +92,9 @@ autocmd QuickFixCmdPost *log* cwindow
 autocmd QuickFixCmdPost *grep* cwindow
 
 " Color highlightings
-highlight ColorColumn ctermbg=235 guibg=#0f0d0d
-let &colorcolumn="80,".join(range(100,999),",")
+" highlight ColorColumn ctermbg=235 guibg=#0f0d0d
+highlight ColorColumn guibg=#0f0d0d ctermbg=234
+" let &colorcolumn="80,".join(range(100,999),",")
 
 " Better tab navigation with finely crafted shortcuts
 nnoremap <C-]> :tabnext<CR>
@@ -152,6 +157,7 @@ let g:ackprg = 'ag --nogroup --nocolor --column'
 " Fatih fatih fatih
 let g:go_autodetect_gopath = 0
 let g:go_fmt_command = "goimports"
+autocmd BufWritePost *.go GoLint
 
 " Racer
 set hidden
@@ -169,3 +175,9 @@ let g:ctrlp_cmd = 'CtrlP'
 
 " Home printer configuration
 set pdev=RythmPrinter
+
+" Powerline config
+let g:airline_powerline_fonts = 1
+
+" Terraform format on save
+autocmd BufWritePost *.tf TerraformFmt
