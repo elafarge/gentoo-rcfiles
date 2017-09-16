@@ -111,7 +111,8 @@ alias dc="docker-compose"
 alias kcf="kubectl create -f"
 alias kdf="kubectl delete -f"
 alias kaf="kubectl apply -f"
-source "$DIR/k8s_completion.zsh"
+source <(kubectl completion zsh)
+source <(kops completion zsh)
 
 # Work related, shouldn't be added to SCM
 source "$DIR/.private_zshrc"
@@ -126,3 +127,6 @@ alias tcurl="watch -n1 curl -w "@curl-format.txt" -o /dev/null -s"
 
 alias scratchme="i3-msg move scratchpad"
 alias xr="xset r rate 200"
+
+alias kkkon="~/Code/dreem-cloud/current-k-con.sh etienne /home/etienne/.ssh/aws_rythm"
+alias mkcon="cd ~/morpheo/infra/aws-ireland-hq/ec2 && ./mkcon.sh && cd -"
