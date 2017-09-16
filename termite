@@ -4,14 +4,13 @@ scroll_on_keystroke = true
 audible_bell = false
 mouse_autohide = false
 allow_bold = true
+# use_xft = true
 dynamic_title = true
 urgent_on_bell = true
 clickable_url = true
-font = Monaco for Powerline 12
 scrollback_lines = 10000
 search_wrap = true
-#icon_name = terminal
-#geometry = 640x480
+font = Ubuntu Mono derivative Powerline 14
 
 # "system", "on" or "off"
 cursor_blink = system
@@ -23,7 +22,7 @@ cursor_shape = block
 #browser = xdg-open
 
 # set size hints for the window
-#size_hints = false
+size_hints = false
 
 # Hide links that are no longer valid in url select overlay mode
 filter_unmatched_urls = true
@@ -39,10 +38,10 @@ filter_unmatched_urls = true
 # background = #000000
 
 # 20% background transparency (requires a compositor)
-#background = rgba(63, 63, 63, 0.8)
+# background = rgba(63, 63, 63, 0.8)
 
 # if unset, will reverse foreground and background
-highlight = #2f2f2f
+# highlight = #2f2f2f
 
 # colors from color0 to color254 can be set
 # color0 = #3f3f3f
@@ -67,12 +66,13 @@ highlight = #2f2f2f
 [colors]
 foreground = #839496
 foreground_bold = #eee8d5
-#foreground_dim = #888888
+foreground_dim = #888888
+# background = rgba(0, 43, 54, 0.90)
 background = rgb(0, 43, 54)
 cursor = #93a1a1
 
 # if unset, will reverse foreground and background
-#highlight = #839496
+highlight = #839496
 
 # colors from color0 to color254 can be set
 color0 = #073642
@@ -97,7 +97,7 @@ color15 = #fdf6e3
 # [colors]
 # foreground = #657b83
 # foreground_bold = #073642
-# #foreground_dim = #888888
+# foreground_dim = #888888
 # background = #fdf6e3
 # cursor = #586e75
 #
@@ -123,14 +123,14 @@ color15 = #fdf6e3
 # color15 = #fdf6e3
 
 [hints]
-#font = Monospace 12
-#foreground = #dcdccc
-#background = #3f3f3f
-#active_foreground = #e68080
-#active_background = #3f3f3f
-#padding = 2
-#border = #3f3f3f
-#border_width = 0.5
-#roundness = 2.0
+font = Monospace 12
+foreground = #dcdccc
+background = #3f3f3f
+active_foreground = #e68080
+active_background = #3f3f3f
+padding = 2
+border = #3f3f3f
+border_width = 0.5
+roundness = 2.0
 
 # vim: ft=dosini cms=#%s

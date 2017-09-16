@@ -100,6 +100,7 @@ set $editor "3 "
 set $chat "4 "
 set $background "5 "
 set $music "6 "
+set $trello "7 "
 
 # switch to workspace
 bindsym $mod+1 workspace $terminal
@@ -108,7 +109,7 @@ bindsym $mod+3 workspace $editor
 bindsym $mod+4 workspace $chat
 bindsym $mod+5 workspace $background
 bindsym $mod+6 workspace $music
-bindsym $mod+7 workspace 7
+bindsym $mod+7 workspace $trello
 bindsym $mod+8 workspace 8
 bindsym $mod+9 workspace 9
 bindsym $mod+0 workspace 10
@@ -120,7 +121,7 @@ bindsym $mod+Shift+3 move container to workspace $editor
 bindsym $mod+Shift+4 move container to workspace $chat
 bindsym $mod+Shift+5 move container to workspace $background
 bindsym $mod+Shift+6 move container to workspace $music
-bindsym $mod+Shift+7 move container to workspace 7
+bindsym $mod+Shift+7 move container to workspace $trello
 bindsym $mod+Shift+8 move container to workspace 8
 bindsym $mod+Shift+9 move container to workspace 9
 bindsym $mod+Shift+0 move container to workspace 10
@@ -134,7 +135,7 @@ bindsym $mod+Shift+r restart
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 # Move workspace top laptop screen
 bindsym $mod+z move workspace to output eDP1;
-bindsym $mod+Shift+z move workspace to output HDMI2;
+bindsym $mod+Shift+z move workspace to output HDMI1;
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -199,15 +200,6 @@ bindsym XF86AudioPlay exec playerctl play-pause
 bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
-# workspace assignation (for things we don't start on system startup)
-assign [class="Spotify"] $spotify
-assign [class="Chromium"] $browser
-assign [class="Rythmbox"] $spotify
-assign [class="Slack"] $chat
-
-# Let's launch our applications in the right place on startup
-exec i3-msg 'workspace $terminal; exec i3-sensible-terminal; workspace $editor; exec i3-sensible-terminal; workspace $background; exec i3-sensible-terminal; exec i3-sensible-terminal; workspace $chat; exec i3-sensible-terminal; exec slack; workspace $browser; exec chromium;'
-
 for_window [class="Scratchpad"] move to scratchpad
 
 # No title bars
@@ -253,13 +245,11 @@ gaps outer 0
 # }
 
 # Rofi as a great launcher
-bindsym $mod+d exec "rofi -show run -lines 5 -eh 2 -width 100 -padding 600 -opacity 85 -color-window \\"#002b37, #002b37, #003642\\" -color-normal \\"#002b37, #819396, #002b37, #003642, #819396\\" -color-active \\"#002b37, #008ed4, #002b37, #003642, #008ed4\\" -color-urgent \\"#002b37, #da4281, #002b37, #003642, #da4281\\" -font \\"Monaco 18\\""
-
-# Print Screen triggers scrot
+bindsym $mod+d exec "rofi -show run -lines 5 -eh 2 -width 100 -padding 600 -opacity 85 -color-window \\"#002b37, #002b37, #003642\\" -color-normal \\"#002b37, #819396, #002b37, #003642, #819396\\" -color-active \\"#002b37, #008ed4, #002b37, #003642, #008ed4\\" -color-urgent \\"#002b37, #da4281, #002b37, #003642, #da4281\\""
 bindsym --release Print exec --no-startup-id scrot -c
 
-# Compton lightweight compositor for transparency and stuff
-exec --no-startup-id compton -f -c
+# Let's start polybar
+exec --no-startup-id .config/polybar/startup.sh
 
-# But will be moved to other screens if they are present
-exec --no-startup-id ~/.rcfiles/reconfigure_screens.sh
+# And our other apps
+exec --no-startup-id sh -c "~/.rcfiles/startup.sh $terminal $browser $editor $chat $background $music $trello"

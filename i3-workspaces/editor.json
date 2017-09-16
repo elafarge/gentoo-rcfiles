@@ -1,0 +1,91 @@
+// vim:ts=4:sw=4:et
+
+// vim:ts=4:sw=4:et
+{
+    "layout": "splitv",
+    "percent": 0.5,
+    "type": "con",
+    "nodes": [
+
+        // Main shell window
+        {
+            "border": "pixel",
+            "current_border_width": 1,
+            "floating": "auto_off",
+            "geometry": {
+               "height": 482,
+               "width": 802,
+               "x": 0,
+               "y": 0
+            },
+            "name": "i3-save-tree > .rcfiles/i3-workspaces/terminal.json",
+            "percent": 0.8,
+            "swallows": [
+               {
+                  "class": "^Termite$",
+                  "instance": "^termite$",
+                  // "title": "^i3\\-save\\-tree\\ \\>\\ \\.rcfiles\\/i3\\-workspaces\\/terminal\\.json$",
+                  "transient_for": "^$"
+               }
+            ],
+            "type": "con"
+        },
+
+        // Satellite terminals at the bottom (Split-H)
+        {
+            "border": "pixel",
+            "floating": "auto_off",
+            "layout": "splith",
+            "percent": 0.2,
+            "type": "con",
+            "nodes": [
+                {
+                    "border": "pixel",
+                    "current_border_width": 1,
+                    "floating": "auto_off",
+                    "geometry": {
+                       "height": 482,
+                       "width": 802,
+                       "x": 0,
+                       "y": 0
+                    },
+                    "name": "etienne@garland: ~",
+                    "percent": 0.5,
+                    "swallows": [
+                       {
+                          "class": "^Termite$",
+                          "instance": "^termite$",
+                       // "title": "^etienne\\@garland\\:\\ \\~$",
+                          "transient_for": "^$"
+                       }
+                    ],
+                    "type": "con"
+                },
+                {
+                    "border": "pixel",
+                    "current_border_width": 1,
+                    "floating": "auto_off",
+                    "geometry": {
+                       "height": 482,
+                       "width": 802,
+                       "x": 0,
+                       "y": 0
+                    },
+                    "name": "etienne@garland: ~",
+                    "percent": 0.5,
+                    "swallows": [
+                       {
+                          "class": "^Termite$",
+                          "instance": "^termite$",
+                       // "title": "^etienne\\@garland\\:\\ \\~$",
+                          "transient_for": "^$"
+                       }
+                    ],
+                    "type": "con"
+                }
+            ]
+        }
+    ]
+}
+
+

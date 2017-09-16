@@ -1,0 +1,26 @@
+// vim:ts=4:sw=4:et
+
+// Firefox
+{
+    "border": "pixel",
+    "current_border_width": 1,
+    "floating": "auto_off",
+    "geometry": {
+       "height": 858,
+       "width": 1588,
+       "x": 0,
+       "y": 0
+    },
+    "name": "i3: Layout saving in i3 - Firefox Developer Edition",
+    "percent": 0.5,
+    "swallows": [
+       {
+         "class": "^Firefox$",
+         "instance": "^Navigator$",
+       // "title": "^i3\\:\\ Layout\\ saving\\ in\\ i3\\ \\-\\ Firefox\\ Developer\\ Edition$",
+          "transient_for": "^$",
+          "window_role": "^browser$"
+       }
+    ],
+    "type": "con"
+}

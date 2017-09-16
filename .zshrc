@@ -1,9 +1,10 @@
 # Path to your oh-my-zsh installation.
+export TERM=xterm
 ZSH=/usr/share/oh-my-zsh/
 
 DIR="$(dirname "$(readlink -f ~/.zshrc)")"
 
-source "$DIR/antigen/antigen.zsh"
+source "$HOME/antigen.zsh"
 
 ## Antigen ##
 antigen use oh-my-zsh
@@ -84,35 +85,14 @@ export EDITOR=vim
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
-# ssh
-# export SSH_KEY_PATH="~/.ssh/dsa_id"
-# if [ -z "$SSH_AUTH_SOCK" ] ; then
-#   eval `ssh-agent -s`
-#   ssh-add
-# fi
-
-# OpenPGP applet support for YubiKey NEO
-if [ ! -f /tmp/gpg-agent.env ]; then
-    killall gpg-agent;
-        eval $(gpg-agent --daemon --enable-ssh-support > /tmp/gpg-agent.env);
-fi
-. /tmp/gpg-agent.env
-
-# SSH Keychain (supposedly...)
-eval `keychain --noask --eval aws_rythm terraform github_rythm etienne_ks5`
-
-# Go for it
-export GOPATH="/home/etienne/Code/Go"
-export GOBIN=$GOPATH/bin
-export PATH=$PATH:$GOBIN
 
 # Few those commands were so long
 alias dc="docker-compose"
-alias kcf="kubectl create -f"
-alias kdf="kubectl delete -f"
-alias kaf="kubectl apply -f"
-source <(kubectl completion zsh)
-source <(kops completion zsh)
+# alias kcf="kubectl create -f"
+# alias kdf="kubectl delete -f"
+# alias kaf="kubectl apply -f"
+# source <(kubectl completion zsh)
+# source <(kops completion zsh)
 
 # Work related, shouldn't be added to SCM
 source "$DIR/.private_zshrc"
@@ -128,5 +108,19 @@ alias tcurl="watch -n1 curl -w "@curl-format.txt" -o /dev/null -s"
 alias scratchme="i3-msg move scratchpad"
 alias xr="xset r rate 200"
 
-alias kkkon="~/Code/dreem-cloud/current-k-con.sh etienne /home/etienne/.ssh/aws_rythm"
-alias mkcon="cd ~/morpheo/infra/aws-ireland-hq/ec2 && ./mkcon.sh && cd -"
+alias bar="(killall polybar && MONITOR=eDP1 nohup polybar top & MONITOR=HDMI1 nohup polybar top & MONITOR=VGA1 nohup polybar top &)"
+
+# Launching sway
+export XKB_DEFAULT_MODEL=tm2030USB-106 # TypeMatrix
+export XKB_DEFAULT_LAYOUT=us
+export XKB_DEFAULT_VARIANT=dvp
+export XKB_DEFAULT_OPTIONS=compose:ralt
+
+export WLC_DRM_DEVICE=card0
+export WLC_BUFFER_API=GBM
+export WLC_BG=0
+# if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then
+#   exec sway
+# fi
+
+

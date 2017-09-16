@@ -1,0 +1,27 @@
+// vim:ts=4:sw=4:et
+
+// Trello
+{
+    "border": "pixel",
+    "current_border_width": 1,
+    "floating": "auto_off",
+    "geometry": {
+       "height": 900,
+       "width": 1600,
+       "x": 0,
+       "y": 0
+    },
+    "name": "Personal / Geek | Trello - Firefox Developer Edition",
+    "percent": 0.5,
+    "swallows": [
+       {
+          "class": "^Firefox$",
+          "instance": "^Navigator$",
+          "title": "^Personal\\ \\/\\ Geek\\ \\|\\ Trello\\ \\-\\ Firefox\\ Developer\\ Edition$",
+          "transient_for": "^$",
+          "window_role": "^browser$"
+       }
+    ],
+    "type": "con"
+}
+

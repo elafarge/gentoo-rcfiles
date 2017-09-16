@@ -79,72 +79,73 @@ tray-background = ${colors.background}
 
 # Fonts
 font-0 = FontAwesome:style=Regular:antialias=true:size=13;3
-font-1 = Monaco for Powerline:fontformat=truetype:antialias=true:size=10;2
+font-1 = Ubuntu Mono:fontformat=monospace:antialias=true:size=11;2
 font-2 = DejaVu Sans:style=Regular:antialias=true:size=13;2
 font-3 = Material Icons:style=Regular:antialias=true:size=15;5
 
 # Module disposition
-modules-left = i3 mpd
+modules-left = i3
 modules-center =
-modules-right = cpu temperature memory filesystem network battery volume xbacklight date
+modules-right = network cpu temperature memory filesystem volume xbacklight keyboard github date
 
 # Module settings
-[module/battery]
-type = internal/battery
-battery = BAT0
-adapter = AC
-
-time-format = %H:%M
-
-format-charging = <animation-charging> <label-charging>
-format-discharging = <ramp-capacity> <label-discharging>
-
-label-charging = %percentage%% (%time%)
-label-discharging = %percentage%% (%time%)
-label-full =  %percentage%% (00:00)
-
-ramp-capacity-0-foreground = ${colors.alert}
-ramp-capacity-0 = 
-ramp-capacity-1-foreground = ${colors.warning}
-ramp-capacity-1 = 
-ramp-capacity-2-foreground = ${colors.ok}
-ramp-capacity-2 = 
-ramp-capacity-3-foreground = ${colors.ok}
-ramp-capacity-3 = 
-ramp-capacity-4-foreground = ${colors.ok}
-ramp-capacity-4 = 
-
-animation-charging-0 = 
-animation-charging-1 = 
-animation-charging-2 = 
-animation-charging-3 = 
-animation-charging-4 = 
-animation-charging-framerate = 750
+# [module/battery]
+# type = internal/battery
+# # battery = BAT0
+# adapter = ADP1
+#
+# time-format = %H:%M
+#
+# format-charging = <animation-charging> <label-charging>
+# format-discharging = <ramp-capacity> <label-discharging>
+#
+# label-charging = %percentage%% (%time%)
+# label-discharging = %percentage%% (%time%)
+# label-full =  %percentage%% (00:00)
+#
+# ramp-capacity-0-foreground = ${colors.alert}
+# ramp-capacity-0 = 
+# ramp-capacity-1-foreground = ${colors.warning}
+# ramp-capacity-1 = 
+# ramp-capacity-2-foreground = ${colors.ok}
+# ramp-capacity-2 = 
+# ramp-capacity-3-foreground = ${colors.ok}
+# ramp-capacity-3 = 
+# ramp-capacity-4-foreground = ${colors.ok}
+# ramp-capacity-4 = 
+#
+# animation-charging-0 = 
+# animation-charging-1 = 
+# animation-charging-2 = 
+# animation-charging-3 = 
+# animation-charging-4 = 
+# animation-charging-framerate = 750
 
 [module/cpu]
 type = internal/cpu
 interval = 1
 
-format = "  <ramp-coreload>  <label>"
+format = "  <ramp-load>  <label>"
+format-underline = ${colors.green}
 
 label = %percentage:2:3%%
 
-ramp-coreload-0-foreground = ${colors.ok}
-ramp-coreload-0 = ▁
-ramp-coreload-1-foreground = ${colors.ok}
-ramp-coreload-1 = ▂
-ramp-coreload-2-foreground = ${colors.ok}
-ramp-coreload-2 = ▃
-ramp-coreload-3-foreground = ${colors.warning}
-ramp-coreload-3 = ▄
-ramp-coreload-4-foreground = ${colors.warning}
-ramp-coreload-4 = ▅
-ramp-coreload-5-foreground = ${colors.warning}
-ramp-coreload-5 = ▆
-ramp-coreload-6-foreground = ${colors.alert}
-ramp-coreload-6 = ▇
-ramp-coreload-7-foreground = ${colors.alert}
-ramp-coreload-7 = █
+ramp-load-0-foreground = ${colors.ok}
+ramp-load-0 = ▁
+ramp-load-1-foreground = ${colors.ok}
+ramp-load-1 = ▂
+ramp-load-2-foreground = ${colors.ok}
+ramp-load-2 = ▃
+ramp-load-3-foreground = ${colors.warning}
+ramp-load-3 = ▄
+ramp-load-4-foreground = ${colors.warning}
+ramp-load-4 = ▅
+ramp-load-5-foreground = ${colors.warning}
+ramp-load-5 = ▆
+ramp-load-6-foreground = ${colors.alert}
+ramp-load-6 = ▇
+ramp-load-7-foreground = ${colors.alert}
+ramp-load-7 = █
 
 [module/date]
 type = internal/date
@@ -159,33 +160,18 @@ date-alt =  %m-%d
 type = internal/fs
 
 mount-0 = /
+mount-1 = /home
 interval = 10
 
 label-mounted = %free%
 
-format-mounted =  <ramp-capacity> <label-mounted>
-
-ramp-capacity-0-foreground = ${colors.alert}
-ramp-capacity-0 = ▁
-ramp-capacity-1-foreground = ${colors.warning}
-ramp-capacity-1 = ▂
-ramp-capacity-2-foreground = ${colors.warning}
-ramp-capacity-2 = ▃
-ramp-capacity-3-foreground = ${colors.warning}
-ramp-capacity-3 = ▄
-ramp-capacity-4-foreground = ${colors.ok}
-ramp-capacity-4 = ▅
-ramp-capacity-5-foreground = ${colors.ok}
-ramp-capacity-5 = ▆
-ramp-capacity-6-foreground = ${colors.ok}
-ramp-capacity-6 = ▇
-ramp-capacity-7-foreground = ${colors.ok}
-ramp-capacity-7 = █
+format-mounted =  <label-mounted>
+format-mounted-underline = ${colors.base0}
 
 [module/github]
 type = internal/github
 
-token = ${file:/home/etienne/.github-polybar-token}
+token = ${file:/home/etienne/.tokens/github_polybar}
 label =  %notifications%
 
 [module/i3]
@@ -230,51 +216,45 @@ type = internal/memory
 
 interval = 1
 
-label = %gb_used%
+label = %percentage_used%% (%gb_used%)
 
-format =  <bar-used>  <label>
-
-bar-used-width = 6
-bar-used-foreground-0 = ${colors.ok}
-bar-used-foreground-1 = ${colors.ok}
-bar-used-foreground-2 = ${colors.warning}
-bar-used-foreground-3 = ${colors.alert}
-bar-used-indicator =
+format =   <label>
+format-underline = ${colors.cyan}
 
 bar-used-fill = 
 bar-used-empty = 
 bar-used-empty-foreground = #444444
 
-[module/mpd]
-type = internal/mpd
-interval = 1
-
-host = 127.0.0.1
-port = 6600
-password =
-
-format-online = <icon-prev> <icon-seekb> <icon-stop> <toggle> <icon-seekf> <icon-next>  <icon-repeat> <icon-random>  <label-time>  <label-song>
-label-song =  %artist:0:20%  ~ %title:5:25%
-
-label-offline =  mpd is offline :(
-
-icon-play = 
-icon-pause = 
-icon-stop = 
-icon-prev =
-icon-next = 
-icon-seekb = 
-icon-seekf = 
-icon-random = 
-icon-repeat = 
-icon-repeatone = 
-
-toggle-on-foreground = ${colors.foreground}
-toggle-off-foreground = ${colors.inactive}
+# [module/mpd]
+# type = internal/mpd
+# interval = 1
+#
+# host = 127.0.0.1
+# port = 6600
+# password =
+#
+# format-online = <icon-prev> <icon-seekb> <icon-stop> <toggle> <icon-seekf> <icon-next>  <icon-repeat> <icon-random>  <label-time>  <label-song>
+# label-song =  %artist:0:20%  ~ %title:5:25%
+#
+# label-offline =  mpd is offline :(
+#
+# icon-play = 
+# icon-pause = 
+# icon-stop = 
+# icon-prev =
+# icon-next = 
+# icon-seekb = 
+# icon-seekf = 
+# icon-random = 
+# icon-repeat = 
+# icon-repeatone = 
+#
+# toggle-on-foreground = ${colors.foreground}
+# toggle-off-foreground = ${colors.inactive}
 
 [module/network]
 type = internal/network
-interface = wlp2s0
+interface = enp3s0
 
 interval = 1.0
 
@@ -283,10 +263,11 @@ format-packetloss = 
 format-packetloss-foreground = ${colors.warning}
 format-disconnected = 
 format-disconnected-foreground = ${colors.inactive}
+format-connected-underline = ${colors.base1}
 
 label-active-font = 3
 
-label-connected = %downspeed:7:7% %upspeed:7:7%
+label-connected = %downspeed:10:10% %upspeed:10:10%
 
 ramp-signal-0-foreground = ${colors.alert}
 ramp-signal-0 = ▁
@@ -313,20 +294,28 @@ thermal-zone = 0
 
 warn-temprature = 80
 format = <ramp> <label>
+format-underline = ${colors.green}
 
 label = %temperature%
 label-warn = %temperature%
 
 ramp-0-foreground = ${colors.ok}
-ramp-0 = 
+ramp-0 =
 ramp-1-foreground = ${colors.ok}
 ramp-1 = 
 ramp-2-foreground = ${colors.ok}
 ramp-2 = 
-ramp-3-foreground = ${colors.warning}
-ramp-3 = 
-ramp-4-foreground = ${colors.alert}
-ramp-4 = 
+ramp-3-foreground = ${colors.ok}
+ramp-3 = 
+ramp-4-foreground = ${colors.ok}
+ramp-4 = 
+ramp-5-foreground = ${colors.ok}
+ramp-5 = 
+ramp-6-foreground = ${colors.warning}
+ramp-6 = 
+ramp-7-foreground = ${colors.alert}
+ramp-7 = 
+
 
 [module/volume]
 type = internal/volume
@@ -340,8 +329,8 @@ mapping = true
 format-volume = "<ramp-volume> <label-volume> <bar-volume>"
 format-volume-muted = " <label-volume> <bar-volume>"
 
-label-muted = "  0% ────────"
-label-volume = "%percentage%% "
+label-muted = "   0%  |───────"
+label-volume = "%percentage:3:3%% "
 
 ramp-volume-0 = 
 ramp-volume-1 = 
@@ -363,11 +352,11 @@ enable-scroll = true
 format = <ramp> <bar>
 
 label-active-font = 2
-ramp-0 = 🌕
-ramp-1 = 🌔
-ramp-2 = 🌓
-ramp-3 = 🌒
-ramp-4 = 🌑
+ramp-0 = 
+ramp-1 = 
+ramp-2 = 
+ramp-3 = 
+ramp-4 = 
 
 bar-width = 4
 bar-indicator = |
@@ -377,11 +366,14 @@ bar-fill-font = 0
 bar-empty = ─
 bar-empty-font = 0
 
-[module/xkeyboard]
+[module/keyboard]
 type = internal/xkeyboard
 
-format = <label-layout>
-label-layout = %layout% - %name%
+format = <label-layout> <label-indicator>
+format-spacing = 0
+
+label-layout = %layout%
+label-indicator =
 
 [module/xwindow]
 type = internal/xwindow

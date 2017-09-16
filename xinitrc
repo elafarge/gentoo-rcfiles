@@ -31,7 +31,7 @@ if [ -d /etc/X11/xinit/xinitrc.d ] ; then
 fi
 
 # Always good to get audio working...
-start-pulseaudio-x11
+# start-pulseaudio-x11
 
 # Have CAPS LOCK mapped to ESC (so useful in VIM... and even i3)
 # xmodmap -e 'clear Lock' #ensures you're not stuck in CAPS on mode
@@ -39,15 +39,32 @@ start-pulseaudio-x11
 # setxkbmap -option caps:escape &
 
 # Use right Alt as a compose key to be able to type French
-setxkbmap -option compose:ralt &
+setxkbmap \
+  -model tm2030USB-106,tm2030USB-106 \
+  -layout us,fr \
+  -variant dvp, \
+  -option compose:ralt \
+  -geometry pc106 &
 
 # Keyboard repeat rate
 xset r rate 200 25
+
+# Let's set up our displays
+xrandr \
+  --output eDP1 --auto \
+  --output HDMI1 --auto --right-of eDP1 \
+  --output VGA1 --right-of HDMI1
+
+# And our wallpaper
+feh --bg-fill ~/Pictures/wallpaper.jpg
+
+# Without forgetting our compton compositor for transparency
+nohup compton -fc &
 
 # Terminal to be used by i3-sensible-terminal
 export TERMINAL=termite
 
 i3-sensible-terminal -e "vim" "-c" "autocmd CursorHold .notes.md :write" ".notes.md"  --class=Scratchpad --title=Scratchpad &
 
-# Let's get started with i3 !!!
+# Let's get started with i3 (gaps) !!!
 exec i3

@@ -19,33 +19,34 @@ URxvt.depth:                32
 URxvt.geometry:             90x30
 URxvt.transparent:          false
 URxvt.fading:               0
-! URxvt.urgentOnBell:         true
-! URxvt.visualBell:           true
+URxvt.urgentOnBell:         true
+URxvt.visualBell:           true
 URxvt.loginShell:           true
 URxvt.saveLines:            100000
 URxvt.internalBorder:       0
 URxvt.lineSpace:            0
 
 ! Fonts
-URxvt.allow_bold:           true
-URxvt*font: xft:Ubuntu Mono Derivative Powerline:style=Regular:size=14
-URxvt*boldFont: xft:Ubuntu Mono Derivative Powerline:style=Bold:size=14
-URxvt*italicFont: xft:Ubuntu Mono Derivative Powerline:style=Italic:size=14
-URxvt*boldItalicFont: xft:Ubuntu Mono Derivative Powerline:style=Bold Italic:size=14
+URxvt.allowBold: true
+URxvt*font: xft:Ubuntu Mono Derivative Powerline:regular:size=13
+URxvt*imPont: xft:Ubuntu Mono Derivative Powerline:regular:size=13
+URxvt*boldFont: xft:Ubuntu Mono Derivative Powerline:bold:size=13
+URxvt*italicFont: xft:Ubuntu Mono Derivative Powerline:italic:size=13
+URxvt*boldItalicFont: xft:Ubuntu Mono Derivative Powerline:bold:italic:size=13
 
 ! Fix font space
-URxvt*letterSpace: 0
+URxvt*letterSpace: -1
 
 ! Scrollbar
 URxvt.scrollStyle:          rxvt
 URxvt.scrollBar:            false
 
 ! Perl extensions
-URxvt.perl-ext-common: default,matcher,keyboard-select,font-size
+! URxvt.perl-ext-common: default,matcher,keyboard-select,font-size
 
 ! Urls
 URxvt.matcher.button:       1
-URxvt.urlLauncher:          chromium
+URxvt.urlLauncher:          firefox-developer-bin
 
 ! Cursor
 URxvt.cursorBlink:          true

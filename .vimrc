@@ -17,10 +17,14 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'majutsushi/tagbar'
+Plug 'lifepillar/vim-solarized8'
 
 " Colorschemes and themes
 Plug 'crusoexia/vim-monokai'
 Plug 'altercation/vim-colors-solarized'
+Plug 'yuttie/hydrangea-vim'
+Plug 'flazz/vim-colorschemes'
+Plug 'felixhummel/setcolors.vim'
 
 " Apparently cool but I should dive deeper into them at some point
 Plug 'SirVer/ultisnips'
@@ -47,7 +51,6 @@ Plug 'terryma/vim-multiple-cursors'
 Plug 'editorconfig/editorconfig-vim'
 
 " No idea what the fuck it is
-" Plug 'altercation/vim-colors-solarized'
 Plug 'mileszs/ack.vim'
 Plug 'severin-lemaignan/vim-minimap'
 Plug 'scrooloose/nerdcommenter'
@@ -58,19 +61,16 @@ filetype plugin indent on
 
 " Interface customisation
 
-syntax on
 set number
+set t_Co=256
 
 set mouse=a
 set incsearch " Research begins and updates as you type
 set hlsearch
-" set guifont=Ubuntu\ Mono:h11
 set background=dark
+let g:solarized_use16 = 16
 colorscheme solarized
-" set t_Co=256
-" let g:solarized_termcolors=256
-" colorscheme monokai
-" hi Normal ctermbg=none
+syntax on
 
 " Tagbar toggle on F8 --and opening at startup--
 nmap <F6> :TagbarToggle<CR>
@@ -82,20 +82,12 @@ nmap <F6> :TagbarToggle<CR>
 " let g:nerdtree_tabs_open_on_console_startup = 1
 nmap <F5> :NERDTreeToggle<CR>
 
-" Automatic cd to Datadog's Project directory
-" cd /Users/etiennelafarge/Documents/Projects
-
 " Nice shortcut when doing a rebase (saves at least 2 seconds!!)
 autocmd BufRead */git-rebase-todo execute ":%s/pick/squash/gc"
 
 " Fugitive's Glog should open the quickfix window, same for Ggrep
 autocmd QuickFixCmdPost *log* cwindow
 autocmd QuickFixCmdPost *grep* cwindow
-
-" Color highlightings
-" highlight ColorColumn ctermbg=235 guibg=#0f0d0d
-highlight ColorColumn guibg=#0f0d0d ctermbg=234
-" let &colorcolumn="80,".join(range(100,999),",")
 
 " Better tab navigation with finely crafted shortcuts
 nnoremap <C-]> :tabnext<CR>
@@ -175,7 +167,7 @@ let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
 
 " Home printer configuration
-set pdev=RythmPrinter
+set pdev=ATNPrinter
 
 " Powerline config
 let g:airline_powerline_fonts = 1
