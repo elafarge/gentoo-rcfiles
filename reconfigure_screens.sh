@@ -50,4 +50,4 @@ elif [ "$(cat /sys/class/drm/card0-HDMI-A-2/status)" == "disconnected" ] ; then
 fi
 
 # I want a damn wallpaper
-feh --bg-fill ~/Pictures/deviantart/metal_dawn.jpg &
+feh --bg-fill ~/Pictures/deviantart/maple_valley.jpg &
