@@ -31,9 +31,6 @@ i3-msg "move workspace to output eDP1"
 
 i3-msg "workspace $BROWSER"
 
-# Wait for compton to be done starting, we want transparency in our terminals !!!
-sleep 1s
-
 # Let's populate these layouts !!!
 exec i3-sensible-terminal &
 exec i3-sensible-terminal &
