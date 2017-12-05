@@ -15,6 +15,7 @@ antigen bundle command-not-found
 antigen bundle docker
 antigen bundle docker-compose
 antigen bundle pass
+antigen bundle yarn
 antigen bundle z
 
 antigen bundle zsh-users/zsh-syntax-highlighting
@@ -61,7 +62,7 @@ antigen apply
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git mercurial docker docker-compose thefuck vagrant)
+plugins=(git mercurial docker docker-compose thefuck vagrant yarn)
 
 # User configuration
 

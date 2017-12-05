@@ -13,15 +13,14 @@ Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-fugitive'
 Plug 'Valloric/YouCompleteMe'
 Plug 'Xuyuanp/nerdtree-git-plugin'
-" Plug 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'majutsushi/tagbar'
-Plug 'lifepillar/vim-solarized8'
 
 " Colorschemes and themes
-Plug 'crusoexia/vim-monokai'
-Plug 'altercation/vim-colors-solarized'
+" Plug 'crusoexia/vim-monokai'
+" Plug 'altercation/vim-colors-solarized'
+Plug 'lifepillar/vim-solarized8'
 Plug 'yuttie/hydrangea-vim'
 Plug 'flazz/vim-colorschemes'
 Plug 'felixhummel/setcolors.vim'
@@ -34,8 +33,8 @@ Plug 'airblade/vim-gitgutter'
 
 " Language plugins
 Plug 'chrisbra/csv.vim'
-Plug 'scrooloose/syntastic'
-Plug 'marijnh/tern_for_vim'
+Plug 'w0rp/ale'
+" Plug 'scrooloose/syntastic'
 Plug 'lervag/vimtex'
 Plug 'hashivim/vim-terraform'
 Plug 'fatih/vim-go'
@@ -44,7 +43,9 @@ Plug 'rust-lang/rust.vim'
 Plug 'racer-rust/vim-racer'
 Plug 'suan/vim-instant-markdown'
 Plug 'kylef/apiblueprint.vim'
-Plug 'atweiden/vim-uzbl'
+Plug 'mxw/vim-jsx'
+Plug 'pangloss/vim-javascript'
+Plug 'ternjs/tern_for_vim', { 'do': 'npm install' }
 
 " Cool tools for noobs I should get rid of at some point
 Plug 'terryma/vim-multiple-cursors'
@@ -174,3 +175,15 @@ let g:airline_powerline_fonts = 1
 
 " Terraform format on save
 autocmd BufWritePost *.tf TerraformFmt
+
+" ALE linter configuration
+let g:ale_fixers = {
+\   'javascript': ['prettier'],
+\}
+
+" Set this setting in vimrc if you want to fix files automatically on save.
+" This is off by default.
+let g:ale_fix_on_save = 1
+
+" JSX support
+let g:jsx_ext_required = 0
